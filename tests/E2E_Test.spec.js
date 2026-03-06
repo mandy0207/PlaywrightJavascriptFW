@@ -1,16 +1,14 @@
-const { test, expect } = require('@playwright/test');
-const { POManager } = require('../pageObjects/POManager.js');
-const { UniqueGenerator } = require('../utils/UniqueGenerator.js');
+const { test } = require('./fixtures/testFixtures.js');
 
-test('E2E Test', async ({ page }) => {
+
+test.only('E2E Test', async ({pages, page, petData}) => {
   await page.goto("https://www.stg.kinship.com/uk");
-  const poManager= new POManager(page);
-  await poManager.getloginPageObject().handleCookies();
-  await poManager.getloginPageObject().navigateToUserPage();
-  await poManager.getUserPageObject().createUser(page);
-  const petName = UniqueGenerator.getFakeData('firstname');
-  await poManager.getpetPageObject().addPet(petName);
-  await poManager.getlandingPageObject().verifyPetExistsInAddedDrawer(petName);
+  await pages.loginPage.handleCookies();
+  await pages.landingPage
+  await pages.loginPage.navigateToUserPage();
+  await pages.userPage.createUser(page);
+  await pages.petPage.addPet(petData.petName);
+  await pages.landingPage.verifyPetExistsInAddedDrawer(petData.petName);
 
 });
 

@@ -12,10 +12,9 @@ class LoginPage {
         this.nextBtn = this.page.getByRole('button', { 'name': 'Next' })
     }
 
-
-
     async handleCookies() {
         await this.rejectCookies.click();
+        await new Promise(res=>setTimeout(res, 6000));
         if (await this.maybeLater.isVisible()) {
             await this.maybeLater.click();
         };

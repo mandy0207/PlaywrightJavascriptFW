@@ -14,7 +14,7 @@ test.beforeAll(async () => {
   console.log(petName)
 })
 
-test.only('verify user is able to delete pet profile', async ({ page }) => {
+test('verify user is able to delete pet profile', async ({ page }) => {
   await page.goto("https://www.stg.kinship.com/uk");
   await page.addInitScript(value => {
     window.localStorage.setItem('access_token', value);
