@@ -1,9 +1,11 @@
 const { UniqueGenerator } = require('../utils/UniqueGenerator.js');
 const {expect } = require('@playwright/test');
-class PetPage {
+const {PageHelper}= require('../pageObjects/PageHelper.js')
+
+class PetPage extends PageHelper {
 
     constructor(page) {
-        this.page = page;
+        super(page);
         this.petNameInput = this.page.locator("#petName");
         this.petYearDropdown = this.page.locator("//*[@name='petAge.year']/parent::*//*[@aria-label='Select']/parent::*/..");
         this.petAgeMonthDropdown = this.page.locator("//*[@name='petAge.month']/parent::*//*[@aria-label='Select']/parent::*/..");
@@ -29,7 +31,7 @@ class PetPage {
     async handleDropdown(dropdown, value) {
         await dropdown.click();
         const option = this.page.getByRole('option', { name: value, exact: true });
-        await option.waitFor({ state: 'visible' });
+        await this.waitForVisibleState(option);
         await option.click();
     }
 }

@@ -1,10 +1,11 @@
 const { UniqueGenerator } = require('../utils/UniqueGenerator.js');
 const {expect } = require('@playwright/test');
+const {PageHelper}= require('../pageObjects/PageHelper.js')
 
-class UserPage {
+class UserPage extends PageHelper {
 
     constructor(page) {
-        this.page = page
+        super(page);
         this.password = this.page.getByRole('textbox', { name: 'Create your password' });
         this.firstName = this.page.getByRole('textbox', { name: 'First name' });
         this.surName = this.page.getByRole('textbox', { name: 'Surname' })
