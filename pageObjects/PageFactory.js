@@ -1,8 +1,4 @@
-const { UserPage } = require("./UserPage");
-const { LoginPage } = require("./LoginPage");
-const { LandingPage } = require("./LandingPage")
-const { PetPage } = require("./PetPage");
-const {AccountsPage}= require("./AccountsPage")
+const { LoginPage, LandingPage, AccountsPage, UserPage, PetPage } = require('./index');
 
 function createPages(page) {
     return {   

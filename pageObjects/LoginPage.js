@@ -7,7 +7,7 @@ class LoginPage extends PageHelper {
         super(page);
         this.rejectCookies = this.page.getByRole('button', { 'name': 'Reject All' })
         this.maybeLater = this.page.getByRole('button', { 'name': 'Maybe Later' });
-        this.signupBtn = this.page.getByRole('button', { 'name': 'Sign Up / Login' })
+        this.signupBtn = this.page.locator("[opti-default-header-user-account-button='user-account-button'],[opti-default-header-login-signup-button='login-signup-button']")
         this.emailInputBox = this.page.locator('#email');
         this.nextBtn = this.page.getByRole('button', { 'name': 'Next' })
     }
@@ -21,7 +21,7 @@ class LoginPage extends PageHelper {
 
     }
     async navigateToUserPage() {
-        await this.signupBtn.click();
+        await this.signupBtn.filter({ visible: true }).click();
         await this.emailInputBox.first().fill(UniqueGenerator.getFakeData('email'));
         await this.nextBtn.click();
         return  this.page.getByRole('heading', { name: 'Let’s create your account' });

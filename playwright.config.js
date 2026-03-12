@@ -3,23 +3,51 @@ import { defineConfig, devices, expect } from '@playwright/test';
 import { report } from 'node:process';
 
 
-const config=({
+const config = ({
   testDir: './tests',
-  reporter : 'html',
-  timeout: 60*1000,
-  expect : {
-    timeout: 40*1000
+  reporter: 'html',
+  timeout: 60 * 1000,
+  expect: {
+    timeout: 40 * 1000
   },
 
-  use: {
-  browserName : 'chromium',
-  headless : false,
-  screenshot:'on',
-  trace:'on',  //on off
-  // video: 'on'
-  },
+  projects: [
+    {
+      name: 'Web',
+      use: {
+        browserName: 'chromium',
+        headless: false,
+        screenshot: 'on',
+        trace: 'on',  //on off
+      
+      },
+    },
+
+    {
+      name: 'Mobile_IOS',
+      use: {
+        browserName: 'chromium',
+        headless: false,
+        screenshot: 'on',
+        trace: 'on',  //on off
+       ...devices['iPhone 15 Pro Max']
+      },
+    },
+
+    {
+      name: 'Mobile_Android',
+      use: {
+        browserName: 'chromium',
+        headless: false,
+        screenshot: 'on',
+        trace: 'on',  //on off
+       ...devices['Pixel 7']
+      },
+    },
+  ]
+
 
 
 });
 
-module.exports=config;
+module.exports = config;
