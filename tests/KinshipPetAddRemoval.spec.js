@@ -7,7 +7,11 @@ test('verify user is able to delete pet profile', async ({pages, page,addPet, au
   await pages.landingPage.navigateToAccountsPage();
   const xpath= await pages.accountsPage.verifyPetXExistsOnAccounstPage(addPet);
   await pages.accountsPage.removePet(xpath);
-  
+
+});
+
+test('4th Test @Smoke', async ({pages, page, petData}) => {
+  await page.goto("https://www.fb.com");
 
 });
 

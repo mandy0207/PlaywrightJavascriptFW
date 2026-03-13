@@ -5,6 +5,8 @@ import { report } from 'node:process';
 
 const config = ({
   testDir: './tests',
+  // retries:1,
+  workers:10,
   reporter: 'html',
   timeout: 60 * 1000,
   expect: {
@@ -16,7 +18,7 @@ const config = ({
       name: 'Web',
       use: {
         browserName: 'chromium',
-        headless: false,
+        headless: true,
         screenshot: 'on',
         trace: 'on',  //on off
       

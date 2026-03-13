@@ -1,7 +1,16 @@
 const { test } = require('./fixtures/testFixtures.js');
 const { expect } = require('@playwright/test');
 
-test.only('E2E Test', async ({pages, page, petData}) => {
+/**
+ * for executing tests of same file in parallel
+ * test.describe.configure({mode:'parallel'});
+ * 
+ * for executing in serial and if later test depends upon previous
+ * test.describe.configure({mode:'serial'});
+ */
+
+
+test('E2E Test', async ({pages, page, petData}) => {
   await page.goto("https://www.stg.kinship.com/uk");
   await pages.loginPage.handleCookies();
   const heading =await pages.loginPage.navigateToUserPage();
@@ -12,6 +21,15 @@ test.only('E2E Test', async ({pages, page, petData}) => {
 
 });
 
+test('Second Test @Smoke', async ({pages, page, petData}) => {
+  await page.goto("https://www.fb.com");
+
+});
+
+test('@Smoke Third Test', async ({pages, page, petData}) => {
+  await page.goto("https://www.fb.com");
+
+});
 
 
 
